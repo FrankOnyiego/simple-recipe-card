@@ -6,6 +6,8 @@ import About from '../pages/About'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import ForgotPasswordForm from '../pages/ForgotPasswordForm'
+import ResetPassword from '../pages/ResetPassword'
+import Admin from '../admin/Admin'
 
 const Routers = ()=> {
   return (
@@ -17,6 +19,8 @@ const Routers = ()=> {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot" element={<ForgotPasswordForm />} />
+        <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/admin" element={<Admin />} />
     </Routes>
   )
 }

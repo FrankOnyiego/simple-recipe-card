@@ -1,6 +1,7 @@
 import React from 'react'
 import {NavLink,Link} from 'react-router-dom'
 import Home from "../pages/Home"
+
 function Header() {
   return (
     <>
@@ -21,6 +22,9 @@ function Header() {
       </li>
       <li className="nav-item">
         <NavLink className="nav-link" to="/login">Login</NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/reset">Reset Password</NavLink>
       </li>
       <li className="nav-item">
         <NavLink className="nav-link" to="/about">About</NavLink>

@@ -1,25 +1,29 @@
 import React from 'react'
 import {NavLink,Link} from 'react-router-dom'
+import Home from "../pages/Home"
 function Header() {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="./index.php">
+  <NavLink className="navbar-brand" to="/">
     RECIPES
-  </a>
+  </NavLink>
   <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span className="navbar-toggler-icon"></span>
   </button>
   <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav ml-auto">
       <li className="nav-item active">
-        <a className="nav-link" href="index.php">Home</a>
+        <NavLink className="nav-link" to="/">Home</NavLink>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="index.php#learn">Featured</a>
+        <NavLink className="nav-link" to="/register">Register</NavLink>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="about.php">About</a>
+        <NavLink className="nav-link" to="/login">Login</NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/about">About</NavLink>
       </li>
     </ul>
   </div>

@@ -25,11 +25,11 @@ function Recipes() {
         <NavLink
           to={`/recipes/${item.rid}`}
           key={item.rid}
+          className="col-md-3"
         >
-              <div className="col-md-4">
-                <img src="https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg" alt="preview" style={{ width: "100%", height: "100%" }} />
-              <h3>{item.Title}</h3>
-              <p></p>
+              <div>
+                <img src="https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg" alt="preview" style={{ width: "100%", height: "240px",maxWidth: '450px', margin: "auto auto" }} />
+              <p>{item.Title}</p>
             </div>
         </NavLink>
       ))

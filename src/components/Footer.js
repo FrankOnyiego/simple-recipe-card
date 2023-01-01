@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer() {
   return (
-<footer className="text-center text-lg-start bg-white text-muted jumbotron">
+<div className="text-left text-lg-start bg-dark text-muted">
   <section className="">
-    <div className="container text-center text-md-start mt-5">
+    <div className="container text-left text-md-start mt-5 p-3">
       <div className="row mt-3">
         <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <h6 className="text-uppercase fw-bold mb-4">
@@ -64,7 +64,7 @@ function Footer() {
       </div>
     </div>
   </section>
-</footer>
+</div>
   );
 }
 

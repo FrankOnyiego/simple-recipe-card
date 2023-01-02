@@ -58,7 +58,7 @@ function RecipeTable() {
           <th>RECIPE</th>
           <th>INGREDIENTS</th>
           <th>DESCRIPTION</th>
-          <th><Button variant="success" onClick={() => {addSetModalShow(true); setId(1)}}>ADD <i class="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
+          <th><Button variant="success" onClick={() => {addSetModalShow(true); setId(1)}}>ADD <i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
         </tr>
       </thead>
 

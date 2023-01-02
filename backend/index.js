@@ -98,3 +98,17 @@ app.post('/login',(req,res)=>{
     res.send(result); 
   });
 })
+
+app.post('/addrecipe',(req,res)=>{
+  const name = req.body.recipe;
+  const ingredient = req.body.ingredients;
+  const description = req.body.description;
+
+  const sql = "INSERT INTO recipecard VALUES(NULL,?,?,?)";
+
+  con.query(sql,[name,ingredient,description],function(error,result,field){
+    if(error) throw error;
+    res.send(result); 
+  });
+
+})

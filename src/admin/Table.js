@@ -4,12 +4,15 @@ import axios from 'axios'
 import Dropdown from 'react-bootstrap/Dropdown';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
+import AddModal from './AddModal';
+import Button from 'react-bootstrap/Button'
 
 function RecipeTable() {
 
     const[recipes, setRecipes]=useState([]);
-    const [modalShow, setModalShow] = React.useState(true);
-    const [deleteModalShow, deleteSetModalShow] = React.useState(true);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [deleteModalShow, deleteSetModalShow] = React.useState(false);
+    const [addModalShow, addSetModalShow] = React.useState(false);
     const[rid,setId]=useState(0);
 
     async function getData() {
@@ -39,9 +42,15 @@ function RecipeTable() {
         onHide={() => deleteSetModalShow(false)}
         rid={rid}
     />
+
+    <AddModal
+        show={addModalShow}
+        onHide={() => addSetModalShow(false)}
+        rid={rid}
+    />
         <Table responsive style={{
-        width: '80%',
-        marginLeft: '10%'
+        width: '90%',
+        marginLeft: '5%'
     }}>
 
       <thead>
@@ -49,16 +58,16 @@ function RecipeTable() {
           <th>RECIPE</th>
           <th>INGREDIENTS</th>
           <th>DESCRIPTION</th>
-          <th>ACTION</th>
+          <th><Button variant="success" onClick={() => {addSetModalShow(true); setId(1)}}>ADD <i class="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
         </tr>
       </thead>
 
       <tbody>
           {recipes.map((item)=>(
             <tr key={item.rid}>
-                <td style={{fontSize: '10px'}}>{item.Title}</td>
-                <td style={{fontSize: '10px'}}>{item.ingredients}</td>
-                <td style={{fontSize: '10px'}}>{item.description}</td>
+                <td style={{fontSize: '12px'}}>{item.Title}</td>
+                <td style={{fontSize: '12px'}}>{item.ingredients}</td>
+                <td style={{fontSize: '13px'}}>{item.description}</td>
                 <td>
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic" style={{fontSize: '10px'}}>

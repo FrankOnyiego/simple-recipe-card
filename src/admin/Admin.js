@@ -3,12 +3,13 @@ import React from 'react'
 import RecipeTable from './Table'
 import Footer from './Footer'
 import Header from './Header'
+import Headertwo from './Header2'
 import { NavLink } from 'react-router-dom'
 
 function Admin() {
   return (
    <>
-   <Header />
+   <Headertwo />
    {/*START OF DRAWER*/}
     <div style={{
           display: 'flex',

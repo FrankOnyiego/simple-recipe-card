@@ -9,6 +9,7 @@ import ForgotPasswordForm from '../pages/ForgotPasswordForm'
 import ResetPassword from '../pages/ResetPassword'
 import Admin from '../admin/Admin'
 import EditRecipe from '../admin/editRecipe'
+import DeleteRecipe from '../admin/DeleteRecipe'
 
 const Routers = ()=> {
   return (
@@ -23,6 +24,7 @@ const Routers = ()=> {
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/edit/:id" element={<EditRecipe />} />
+        <Route path="/delete/:id" element={<DeleteRecipe />} />
     </Routes>
   )
 }

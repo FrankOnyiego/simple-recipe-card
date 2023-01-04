@@ -39,7 +39,9 @@ function RecipeTable() {
 
     <AddModal
         show={addModalShow}
-        onHide={() => addSetModalShow(false)}
+        onHide={() => {
+          addSetModalShow(false);           
+        }}
         rid={rid}
     />
 
@@ -72,7 +74,7 @@ function RecipeTable() {
 
                     <Dropdown.Menu>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/edit/${item.rid}`)}}>Edit</Dropdown.Item>
-                        <Dropdown.Item href="" onClick={() => {deleteSetModalShow(true); setId(item.rid)}} >Delete</Dropdown.Item>
+                        <Dropdown.Item href="" onClick={() => {setId(item.rid); deleteSetModalShow(true); }} >Delete</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 </td>

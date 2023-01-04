@@ -112,3 +112,14 @@ app.post('/addrecipe',(req,res)=>{
   });
 
 })
+
+app.get('/delete/:id',(req,res)=>{
+  const rid = req.params.id;
+  console.log(req.params);
+  const sql = "DELETE FROM `recipecard` WHERE `recipecard`.`rid` = ?";
+
+  con.query(sql,[rid],function(error,result,field){
+    if(error) throw error;
+    res.send(result);  
+  });
+})

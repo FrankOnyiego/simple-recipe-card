@@ -2,13 +2,13 @@ import React, {useState,useEffect} from 'react'
 import Table from 'react-bootstrap/Table';
 import axios from 'axios'
 import Dropdown from 'react-bootstrap/Dropdown';
-import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 import AddModal from './AddModal';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import {useNavigate} from 'react-router-dom';
 
 function RecipeTable() {
-
+    const Navigate = useNavigate();
     const[recipes, setRecipes]=useState([]);
     const [modalShow, setModalShow] = React.useState(false);
     const [deleteModalShow, deleteSetModalShow] = React.useState(false);
@@ -18,7 +18,6 @@ function RecipeTable() {
     async function getData() {
         try {
           const response = await axios.get('http://localhost:5000/recipes');
-          console.log(response.data);
           setRecipes(response.data);
         } catch (error) {
           console.log(error);
@@ -29,14 +28,9 @@ function RecipeTable() {
         getData();
       },[])
 
+
   return (
     <>
-    <EditModal 
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        rid={rid}
-    />
-
     <DeleteModal
         show={deleteModalShow}
         onHide={() => deleteSetModalShow(false)}
@@ -48,6 +42,8 @@ function RecipeTable() {
         onHide={() => addSetModalShow(false)}
         rid={rid}
     />
+
+
         <Table responsive style={{
         width: '90%',
         marginLeft: '5%'
@@ -58,7 +54,7 @@ function RecipeTable() {
           <th>RECIPE</th>
           <th>INGREDIENTS</th>
           <th>DESCRIPTION</th>
-          <th><Button variant="success" onClick={() => {addSetModalShow(true); setId(1)}}>ADD <i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
+          <th><Button variant="success" onClick={() => {setId(1); addSetModalShow(true);}}>ADD <i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
         </tr>
       </thead>
 
@@ -75,14 +71,14 @@ function RecipeTable() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="#/action-1" onClick={() => {setModalShow(true); setId(item.rid)}}>Edit</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2" onClick={() => {deleteSetModalShow(true); setId(item.rid)}} >Delete</Dropdown.Item>
+                        <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/edit/${item.rid}`)}}>Edit</Dropdown.Item>
+                        <Dropdown.Item href="" onClick={() => {deleteSetModalShow(true); setId(item.rid)}} >Delete</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 </td>
             </tr>
           ))
-          }
+          } 
       </tbody>
     </Table>
     </>

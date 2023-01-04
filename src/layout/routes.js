@@ -8,6 +8,7 @@ import Login from '../pages/Login'
 import ForgotPasswordForm from '../pages/ForgotPasswordForm'
 import ResetPassword from '../pages/ResetPassword'
 import Admin from '../admin/Admin'
+import EditRecipe from '../admin/editRecipe'
 
 const Routers = ()=> {
   return (
@@ -21,6 +22,7 @@ const Routers = ()=> {
         <Route path="/forgot" element={<ForgotPasswordForm />} />
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/edit/:id" element={<EditRecipe />} />
     </Routes>
   )
 }

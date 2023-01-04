@@ -10,8 +10,16 @@ import { Link } from 'react-router-dom';
         marginRight: "0px",
       }}>
         <Nav className="ml-auto">
-            <Nav.Link><Link to="/admin">Home</Link></Nav.Link>
-           <Nav.Link> <Link to="/admin">About</Link> </Nav.Link>
+            <Nav.Link><Link to="/admin" style={{
+              color: 'white',
+              textDecoration: 'none'
+            }}>Home</Link></Nav.Link>
+           <Nav.Link> <Link to="/admin"
+           style={{
+            color:'white',
+            textDecoration: 'none'
+           }}
+           >About</Link> </Nav.Link>
         </Nav> 
       </Navbar.Collapse>
     </Navbar>

@@ -120,6 +120,20 @@ app.get('/delete/:id',(req,res)=>{
 
   con.query(sql,[rid],function(error,result,field){
     if(error) throw error;
-    res.send(result);  
+    res.send(result);   
   });
+})
+
+app.post('/editrecipe',(req,res)=>{
+  const rid = req.body.rid;
+  const ingredients = req.body.ingredients;
+  const description = req.body.description;
+
+  const sql = "UPDATE `recipecard` SET `ingredients` = ? , `description`= ?  WHERE `recipecard`.`rid` = ?";
+
+  con.query(sql,[ingredients,description,rid],function(error,result,field){
+    if(error) throw error;
+    console.log(result,"edited");
+    res.send(result);   
+  }); 
 })

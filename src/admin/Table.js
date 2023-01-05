@@ -56,7 +56,7 @@ function RecipeTable() {
           <th>RECIPE</th>
           <th>INGREDIENTS</th>
           <th>DESCRIPTION</th>
-          <th><Button variant="success" onClick={() => {setId(1); addSetModalShow(true);}}>ADD <i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
+          <th><Button variant="secondary" style={{fontSize: '10px'}} onClick={() => {setId(1); addSetModalShow(true);}}>ADD&nbsp;&nbsp;&nbsp;<i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
         </tr>
       </thead>
 
@@ -68,8 +68,8 @@ function RecipeTable() {
                 <td style={{fontSize: '13px'}}>{item.description}</td>
                 <td>
                 <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic" style={{fontSize: '10px'}}>
-                        Dr
+                    <Dropdown.Toggle variant="light" id="dropdown-basic" style={{fontSize: '10px'}}>
+                        Action
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>

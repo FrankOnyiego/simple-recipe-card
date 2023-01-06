@@ -1,7 +1,8 @@
 import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
-import crypto from 'crypto'
+import crypto from 'crypto';
+import cookieParser from 'cookie-parser';
 
 import nodemailer from 'nodemailer'
 
@@ -9,6 +10,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 app.listen(5000,()=>{
     console.log("listening on port 5000");
@@ -35,7 +37,6 @@ app.get('/recipes',(req,res)=>{
     con.query("SELECT * FROM recipecard", function (err, result, fields) {
         if (err) throw err;
         console.log(result);
-
         res.send(result);
     });
 })
@@ -45,7 +46,6 @@ app.get('/recipes/:id',(req,res)=>{
   con.query("SELECT * FROM recipecard WHERE rid = ?",[req.params.id], function (err, result, fields) {
       if (err) throw err;
       console.log(result);
-
       res.send(result);
   });
 })
@@ -85,39 +85,42 @@ app.post('/register',(req,res)=>{
   const sql = "INSERT INTO users VALUES(NULL,?,?,?)";
   const password_hash = crypto.createHash('md5').update(req.body.password).digest('hex');
   con.query(sql,[req.body.name,req.body.email,password_hash]);
-
-  res.cookie('email', `${req.body.email}`, { maxAge: 86400, httpOnly: true });
-
+  res.cookie('email', `${req.body.email}`, { maxAge: 86400, httpOnly: false });
   res.send("registration successful");
 })
 
 app.post('/login',(req,res)=>{
   const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
   const password_hash = crypto.createHash('md5').update(req.body.password).digest('hex');
+  res.cookie('cookieName', 'cookieValue', { maxAge: 900000,})
   con.query(sql,[req.body.email,password_hash],function(error,result,field){
-    res.send(result); 
+    res.send(result);  
   });
+  console.log(req.cookies);
 })
+
+app.get('/cookie/:email', (req, res) => {
+  const email = req.params.email;
+  res.cookie('email', `${email}`, {maxAge: 900000, httpOnly: true, path: '/'});
+  console.log(req.cookies);
+  res.send('Cookie has been set');
+});
 
 app.post('/addrecipe',(req,res)=>{
   const name = req.body.recipe;
   const ingredient = req.body.ingredients;
   const description = req.body.description;
-
   const sql = "INSERT INTO recipecard VALUES(NULL,?,?,?)";
-
   con.query(sql,[name,ingredient,description],function(error,result,field){
     if(error) throw error;
     res.send(result); 
   });
-
 })
 
 app.get('/delete/:id',(req,res)=>{
   const rid = req.params.id;
   console.log(req.params);
   const sql = "DELETE FROM `recipecard` WHERE `recipecard`.`rid` = ?";
-
   con.query(sql,[rid],function(error,result,field){
     if(error) throw error;
     res.send(result);   
@@ -128,9 +131,7 @@ app.post('/editrecipe',(req,res)=>{
   const rid = req.body.rid;
   const ingredients = req.body.ingredients;
   const description = req.body.description;
-
   const sql = "UPDATE `recipecard` SET `ingredients` = ? , `description`= ?  WHERE `recipecard`.`rid` = ?";
-
   con.query(sql,[ingredients,description,rid],function(error,result,field){
     if(error) throw error;
     console.log(result,"edited");

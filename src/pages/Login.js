@@ -6,7 +6,9 @@ import { NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+
 export default function Login() {
+
   const Navigate = useNavigate();
   const Formik = useFormik({
     initialValues: {
@@ -14,15 +16,18 @@ export default function Login() {
       password: ""
     },
     onSubmit: function(values){
+      const mail = values.email;
+
       axios.post("http://localhost:5000/login",values).then(response=>{
         if(response){
+          axios.get(`http://localhost:5000/cookie/${mail}`);
           console.log("details found");
           Navigate("/recipes");
         }else{
           console.log("no records found");
         }
       });
-    }
+    } 
   })
 
   return (

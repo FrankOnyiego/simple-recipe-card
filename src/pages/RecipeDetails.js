@@ -32,7 +32,8 @@ function RecipeDetails() {
     <div class="row">
 <div className="container mt-5">
 <div className="row">
-  <div className="col-md-6 order-md-1" style={{ backgroundImage: `url(${'https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg'})` }}>
+  <div className="col-md-6 order-md-1" >
+    <img style={{maxWidth: '40vw'}} src='https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg' alt="rd" />
   </div>
   <div className="col-md-6 order-md-2">
     <h2>Description</h2>

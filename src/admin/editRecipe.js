@@ -26,8 +26,8 @@ useEffect(()=>{
   const Formik = useFormik({
     initialValues: {
       rid: `14`,
-      ingredients: ``,
-      description: ``
+      ingredients: ` `,
+      description: ` `
     },
     onSubmit: function(values){
       console.log(values);
@@ -52,12 +52,12 @@ console.log(rep[0],"state data");
             >
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Ingredients</Form.Label> 
-                    <Form.Control as="textarea" rows={5} name="ingredients" onChange={Formik.handleChange} value={item.ingredients} placeholder="type ingredients..." />
+                    <Form.Control as="textarea" rows={5} name="ingredients" onChange={Formik.handleChange} value={Formik.values.ingredients ? Formik.values.ingredients : item.ingredients} placeholder="type ingredients..." />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Preparation</Form.Label>
-                    <Form.Control as="textarea" rows={5} name="description" onChange={Formik.handleChange} value={item.description} placeholder="type preparation steps..." />
+                    <Form.Control as="textarea" rows={5} name="description" onChange={Formik.handleChange} value={Formik.values.description ? Formik.values.description : item.description} placeholder="type preparation steps..." />
                 </Form.Group>
 
                 <Button variant="warning" type="submit" onSubmit={Formik.handleSubmit}>

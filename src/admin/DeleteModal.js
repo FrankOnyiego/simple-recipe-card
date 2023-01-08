@@ -23,7 +23,7 @@ export default function DeleteModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter" className="text-danger">
-          {props.rid}
+          {props.title}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

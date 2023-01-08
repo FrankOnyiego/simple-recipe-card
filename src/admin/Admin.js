@@ -1,6 +1,6 @@
 import React from 'react'
 import RecipeTable from './Table'
-import Footer from './Footer'
+import Footer from '../components/Footer';
 import Headertwo from './Header2'
 import { NavLink } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ function Admin() {
    <>
    <Headertwo />
    {/*START OF DRAWER*/}
-    <div style={{
+     <div style={{
           display: 'flex',
         }}>      
                 <div

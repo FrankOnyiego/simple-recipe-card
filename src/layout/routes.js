@@ -21,7 +21,7 @@ const Routers = ()=> {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot" element={<ForgotPasswordForm />} />
-        <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/reset/:email" element={<ResetPassword />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/edit/:id" element={<EditRecipe />} />
         <Route path="/delete/:id" element={<DeleteRecipe />} />

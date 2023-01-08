@@ -29,7 +29,7 @@ function RecipeDetails() {
     {recipes.map((item)=>(
       <div className="container mt-5">
         <h1>{item.Title.toUpperCase()}</h1>
-    <div class="row">
+    <div class="row mt-1">
 <div className="container mt-5">
 <div className="row">
   <div className="col-md-6 order-md-1" >

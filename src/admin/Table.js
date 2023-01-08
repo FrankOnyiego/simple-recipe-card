@@ -5,7 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DeleteModal from './DeleteModal';
 import AddModal from './AddModal';
 import Button from 'react-bootstrap/Button';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, NavLink,Link} from 'react-router-dom';
 
 function RecipeTable() {
     const Navigate = useNavigate();
@@ -35,6 +35,7 @@ function RecipeTable() {
         show={deleteModalShow}
         onHide={() => deleteSetModalShow(false)}
         rid={rid}
+        title={"recipe"}
     />
 
     <AddModal
@@ -46,21 +47,21 @@ function RecipeTable() {
     />
 
 
-        <Table responsive style={{
+        <Table responsive className="table table-striped table-hover table-lg mt-2" style={{
         width: '90%',
         marginLeft: '5%'
-    }}>
+    }}> 
 
-      <thead>
+      <thead className="thead-dark">
         <tr>
           <th>RECIPE</th>
           <th>INGREDIENTS</th>
           <th>DESCRIPTION</th>
-          <th><Button variant="secondary" style={{fontSize: '10px'}} onClick={() => {setId(1); addSetModalShow(true);}}>ADD&nbsp;&nbsp;&nbsp;<i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
+          <th><Button variant="primary" style={{fontSize: '10px'}} onClick={() => {setId(1); addSetModalShow(true);}}>ADD&nbsp;&nbsp;&nbsp;<i className="fa fa-plus text-white" aria-hidden="true"></i></Button></th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody style={{marginTop: '1rem'}}>
           {recipes.map((item)=>(
             <tr key={item.rid}>
                 <td style={{fontSize: '12px'}}>{item.Title}</td>
@@ -75,6 +76,7 @@ function RecipeTable() {
                     <Dropdown.Menu>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/edit/${item.rid}`)}}>Edit</Dropdown.Item>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); deleteSetModalShow(true); }} >Delete</Dropdown.Item>
+                        <Dropdown.Item href="" onClick={() => {setId(item.rid); deleteSetModalShow(true); }} >Learn More</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 </td>

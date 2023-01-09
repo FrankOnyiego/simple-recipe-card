@@ -2,6 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Recipes from './Recipes'
+import { NavLink } from 'react-router-dom'
+import FindMeal from '../components/FindMeal'
 
 function Home() {
   return (
@@ -15,15 +17,8 @@ function Home() {
                 </div>
             </header>
 
-            <form className="form-inline my-2 my-lg-0 mb-2" style={{width: '80vw', marginLeft: '10vw'}}>
-      <div className="input-group">
-        <input type="text" className="form-control p-3" placeholder="Search" style={{width: '70vw'}}/>
-        <div className="input-group-append">
-          <button className="btn btn-secondary ml-3" type="submit">Search</button>
-        </div>
-      </div>
-    </form>
-    <br />
+<FindMeal />
+<br />
             <Recipes />
             <br />
             <section className="bg-dark text-white py-5">
@@ -32,7 +27,7 @@ function Home() {
       <div className="col-md-6 mx-auto text-center">
         <h2>Learn More</h2>
         <p className="lead">Discover our wide selection of delicious and easy-to-follow recipes, curated by our team of expert chefs. From classic comfort food to creative and unique dishes, we have something for every taste and occasion.</p>
-        <a href="#" className="btn btn-secondary btn-lg mt-4">Get Started</a>
+        <NavLink href="#" className="btn btn-secondary btn-lg mt-4">Get Started</NavLink>
       </div>
     </div>
   </div>

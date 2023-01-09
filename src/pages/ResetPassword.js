@@ -33,7 +33,7 @@ function ResetPassword() {
             <Card className="p-2 m-4">
                 <Card.Title>Reset password</Card.Title>
                 <Card.Body>
-                <Formik
+                {/*<Formik
       initialValues={{
         password: '',
         confirmpassword: ''
@@ -98,7 +98,69 @@ function ResetPassword() {
                     </Button>
                 </Form> 
       )}
-      </Formik>
+        </Formik>*/}
+        <Formik
+  initialValues={{
+    password: '',
+    confirmPassword: ''
+  }}
+  validationSchema={validationSchema} 
+  onSubmit={(values, { setSubmitting }) => {
+    values.email = "franknyaboga8@gmail.com";
+    axios.post("http://localhost:5000/passwordchange",values).then(response=>{
+      if(response){
+        console.log("details found");
+        Navigate("/recipes");
+      }else{
+        console.log("no records found");
+      }
+    });
+
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 400);
+  }}
+>
+  {({ values, errors, touched, handleChange, handleBlur, handleSubmit,isSubmitting }) => (
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>New password*</Form.Label>
+        <Form.Control
+          type="password"
+          name="password"
+          placeholder="Type password"
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={touched.password && errors.password}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.password}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Confirm Password*</Form.Label>
+        <Form.Control
+          type="password"
+          name="confirmPassword"
+          placeholder="Retype password"
+          value={values.confirmPassword}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          isInvalid={touched.confirmPassword && errors.confirmPassword}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.confirmPassword}
+        </Form.Control.Feedback>
+      </Form.Group>
+      <br />
+      <Button type="submit" disabled={isSubmitting} class="btn btn-success">
+        SAVE PASSWORD
+      </Button>
+    </Form>
+  )}
+</Formik>
+
                 </Card.Body>
             </Card>
         </Col>

@@ -15,6 +15,15 @@ function Home() {
                 </div>
             </header>
 
+            <form className="form-inline my-2 my-lg-0 mb-2" style={{width: '80vw', marginLeft: '10vw'}}>
+      <div className="input-group">
+        <input type="text" className="form-control p-3" placeholder="Search" style={{width: '70vw'}}/>
+        <div className="input-group-append">
+          <button className="btn btn-secondary ml-3" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+    <br />
             <Recipes />
             <br />
             <section className="bg-dark text-white py-5">

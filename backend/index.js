@@ -141,7 +141,13 @@ app.post('/passwordchange',(req,res)=>{
 })
 
 app.get('/username',(req,res)=>{
-  res.send(req.cookies.user);
+  if (req.cookies.user) {
+    // Cookie exists
+    res.send("1");
+  } else {
+    // Cookie does not exist
+    res.send("0");
+  };
 })
 
 app.post('/addrecipe',(req,res)=>{

@@ -6,35 +6,23 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 let name;
 
 function Header() {
-  const[username,setUsername]=useState('');
   let signed;
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
-
-  if(getCookie('email') !== null ){
-    signed=true;
-    console.log("user signed in");
-  }else{
-    signed=false;
-    console.log("user not found");
-  }
-
   async function getUser() {
     try {
       const response = await axios.get('http://localhost:5000/username');
-      setUsername(response.data);
-      name = response.data;
+      if(response.data === 0){
+        signed = false;
+      }else if(response.data === 1){
+        signed = true;
+      }else{
+        signed = false;
+      }
       console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   }
-  useEffect(()=>{
     getUser();
-  })
 
   return (
     <>

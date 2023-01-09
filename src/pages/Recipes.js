@@ -42,9 +42,9 @@ function Recipes() {
   </div>
   <div className="card-footer d-flex justify-content-between align-items-center">
     {/* Add a "Bookmark" button */}
-    <button className="btn btn-primary">Bookmark</button>
+    <button className="btn" style={{backgroundColor: '#e36ff7'}}>Bookmark &nbsp;<i class="fas fa-bookmark"></i></button>
   </div>
-</div>
+</div> 
         </NavLink>
       ))
       }

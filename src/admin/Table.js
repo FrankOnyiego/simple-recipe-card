@@ -74,9 +74,9 @@ function RecipeTable() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
+                        <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/view/${item.rid}`) }} >Learn More</Dropdown.Item>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/edit/${item.rid}`)}}>Edit</Dropdown.Item>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); deleteSetModalShow(true); }} >Delete</Dropdown.Item>
-                        <Dropdown.Item href="" onClick={() => {setId(item.rid); deleteSetModalShow(true); }} >Learn More</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 </td>

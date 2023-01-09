@@ -14,8 +14,6 @@ function Header() {
         signed = false;
       }else if(response.data === 1){
         signed = true;
-      }else{
-        signed = false;
       }
       console.log(response.data);
     } catch (error) {

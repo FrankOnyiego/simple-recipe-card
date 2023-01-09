@@ -28,8 +28,9 @@ const Routers = ()=> {
         <Route path="/delete/:id" element={<DeleteRecipe />} />
         <Route path="/view/:id" element={<ReadData />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="about" element={<About />} />
     </Routes>
   )
-}
+} 
 
 export default Routers;

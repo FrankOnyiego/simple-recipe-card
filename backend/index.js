@@ -141,7 +141,8 @@ app.post('/passwordchange',(req,res)=>{
 })
 
 app.get('/username',(req,res)=>{
-  if (req.cookies.user) {
+  console.log(req.cookies.email,"cookie logout");
+  if (req.cookies.email) {
     // Cookie exists
     res.send("1");
   } else {

@@ -21,16 +21,13 @@ function Footer() {
             Products
           </h6>
           <p>
-            <a href="#!" className="text-reset">Angular</a>
+            <a href="#!" className="text-reset">Meals</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">React</a>
+            <a href="#!" className="text-reset">Desserts</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" className="text-reset">Laravel</a>
+            <a href="#!" className="text-reset">appetizers</a>
           </p>
         </div>
 
@@ -39,17 +36,15 @@ function Footer() {
             Useful links
           </h6>
           <p>
-            <a href="#!" className="text-reset">Pricing</a>
+            <a href="#!" className="text-reset">Fcebook</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Settings</a>
+            <a href="#!" className="text-reset">Instagram</a>
           </p>
           <p>
-            <a href="#!" className="text-reset">Orders</a>
+            <a href="#!" className="text-reset">Twitter</a>
           </p>
-          <p>
-            <a href="#!" className="text-reset">Help</a>
-          </p>
+
         </div>
         <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
@@ -59,7 +54,6 @@ function Footer() {
             info@example.com
           </p>
           <p><i className="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
-          <p><i className="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
         </div>
       </div>
     </div>

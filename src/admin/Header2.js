@@ -17,6 +17,12 @@ import { Link } from 'react-router-dom';
               color: 'white',
               textDecoration: 'none'
             }}>Home</Link></Nav.Link>
+                       <Nav.Link> <Link to="/admin"
+           style={{
+            color:'white',
+            textDecoration: 'none'
+           }}
+           >Messages</Link> </Nav.Link>
                        <Nav.Link> <Link to="/settings"
            style={{
             color:'white',

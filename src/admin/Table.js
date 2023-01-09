@@ -47,7 +47,7 @@ function RecipeTable() {
     />
 
 
-        <Table responsive className="table table-striped table-hover table-lg mt-2" style={{
+        <Table className="table table-striped table-hover table-lg mt-2" style={{
         width: '90%',
         marginLeft: '5%'
     }}> 

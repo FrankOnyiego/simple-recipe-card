@@ -22,30 +22,26 @@ function Recipes() {
     <div className="container">
     <div className="row">
       {recipes.map((item)=>(
+              <div className="card mb-3 col-md-3 mt-4"
+              style={{
+                textDecoration: 'none'
+              }}>
         <NavLink
           to={`/recipes/${item.rid}`}
           key={item.rid}
-          className="col-md-3"
-          style={{
-            textDecoration: 'none'
-          }}
+          className="mt-4"
         >
-          {/*
-              <div>
-                <img src="https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg" alt="preview" style={{ width: "100%", height: "240px",maxWidth: '450px', margin: "auto auto" }} />
-              <p>{item.Title}</p>
-      </div>*/}
-      <div className="card mb-3">
+
   <img src="https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg" alt="preview" style={{ width: "100%", height: "240px",maxWidth: '450px', margin: "auto auto" }} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{item.Title}</h5>
   </div>
-  <div className="card-footer d-flex justify-content-between align-items-center">
-    {/* Add a "Bookmark" button */}
-    <button className="btn" style={{backgroundColor: '#e36ff7'}}>Bookmark &nbsp;<i class="fas fa-bookmark"></i></button>
-  </div>
-</div> 
+ 
         </NavLink>
+          <div className="card-footer d-flex justify-content-between align-items-center">
+          <button className="btn" style={{backgroundColor: '#e36ff7'}}>Bookmark &nbsp;<i class="fas fa-bookmark"></i></button>
+        </div>
+        </div> 
       ))
       }
     </div>

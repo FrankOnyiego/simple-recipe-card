@@ -10,11 +10,12 @@ function Header() {
   async function getUser() {
     try {
       const response = await axios.get('http://localhost:5000/username');
-      if(response.data === 0){
+      console.log(response.data);
+      if(response.data < 1){
         sign(false);
       }
       
-      if(response.data === 1){
+      if(response.data > 0){
         sign(true);
       }
       console.log(response.data);
@@ -22,7 +23,10 @@ function Header() {
       console.log(error);
     }
   }
+
+  useEffect(()=>{
     getUser();
+  },[])
     console.log(signed);
   return (
     <>

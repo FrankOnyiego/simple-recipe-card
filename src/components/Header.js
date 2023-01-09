@@ -6,14 +6,16 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 let name;
 
 function Header() {
-  let signed;
+  const[signed,sign]=useState(false);
   async function getUser() {
     try {
       const response = await axios.get('http://localhost:5000/username');
       if(response.data === 0){
-        signed = false;
-      }else if(response.data === 1){
-        signed = true;
+        sign(false);
+      }
+      
+      if(response.data === 1){
+        sign(true);
       }
       console.log(response.data);
     } catch (error) {
@@ -21,7 +23,7 @@ function Header() {
     }
   }
     getUser();
-
+    console.log(signed);
   return (
     <>
 <Navbar bg="dark" expand="lg">

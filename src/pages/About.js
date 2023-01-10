@@ -47,11 +47,8 @@ function About() {
             </Col>
           </Row>
         </Container>
-
-        <Contact />
       </section>
-
-
+      <Contact/>
       <Footer />
       </>
   )

@@ -47,7 +47,7 @@ function RecipeTable() {
     />
 
 
-        <Table className="table table-striped table-hover table-lg mt-2" style={{
+        <Table responsive className="table table-striped table-hover table-lg mt-2" style={{
         width: '90%',
         marginLeft: '5%'
     }}> 
@@ -74,7 +74,7 @@ function RecipeTable() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/view/${item.rid}`) }} >Learn More</Dropdown.Item>
+                        <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/view/${item.rid}`) }} >Read More</Dropdown.Item>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); Navigate(`/edit/${item.rid}`)}}>Edit</Dropdown.Item>
                         <Dropdown.Item href="" onClick={() => {setId(item.rid); deleteSetModalShow(true); }} >Delete</Dropdown.Item>
                     </Dropdown.Menu>

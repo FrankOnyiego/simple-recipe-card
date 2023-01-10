@@ -87,9 +87,12 @@ app.post('/email', (req, res) => {
           let mailOptions = {
             from: '"Recipes" <support@myratecardinfo.com', // sender address
             to: `${email}`, // list of receivers
-            subject: 'Password Reset', // Subject line
-            text: 'Hello World', // plain text body
-            html: `Trouble signing in? <br />Resetting your password is easy. <br /><br /><a href="http://localhost:3000/reset/${email}">Reset password</a> <br /><br />If you did not make this request then please ignore this email.` // html body
+            subject: req.body.to ?'REPLY TICKET': 'Password Reset', // Subject line
+            text: `${req.body.message}`, // plain text body
+            html: req.body.to ?
+            `${req.body.message}`
+            :
+            `Trouble signing in? <br />Resetting your password is easy. <br /><br /><a href="http://localhost:3000/reset/${email}">Reset password</a> <br /><br />If you did not make this request then please ignore this email.` // html body
           };
 
             // send the email
@@ -183,3 +186,44 @@ app.post('/editrecipe',(req,res)=>{
     res.send(result);   
   }); 
 })
+
+//MESSAGE MANAGEMENT
+app.post('/addmessage',(req,res)=>{
+  const name= req.body.name;
+  const email = req.body.email;
+  const message = req.body.message;
+
+  const sql = "INSERT INTO messages VALUES(NULL,?,?,?)";
+  con.query(sql,[name,email,message],function(error,result,field){
+    if(error) throw error;
+    console.log(result,"edited");
+    res.send(result);   
+  }); 
+})
+
+app.get('/messages',(req,res)=>{
+  //RETURNS ALL INFORMATION ON MESSAGES
+  con.query("SELECT * FROM messages", function (err, result, fields) {
+      if (err) throw err;
+      req.session.result = result;
+      console.log(req.session); 
+      res.send(result);
+  });
+})
+
+app.get('/reply/:msid',(req,res)=>{
+  //RETURNS ALL INFORMATION ON MESSAGES
+  con.query("SELECT * FROM messages WHERE msid = ?",[req.params.msid], function (err, result, fields) {
+      if (err) throw err;
+      res.send(result);
+  });
+})
+
+app.get('/messages/:msid',(req,res)=>{
+  //RETURNS ALL INFORMATION ON CAR DATA
+  con.query("SELECT * FROM messages WHERE msid = ?",[req.params.msid], function (err, result, fields) {
+      if (err) throw err;
+      res.send(result);
+  });
+})
+//END MESSAGE MANAGEMENT

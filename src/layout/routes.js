@@ -12,6 +12,11 @@ import EditRecipe from '../admin/editRecipe'
 import DeleteRecipe from '../admin/DeleteRecipe'
 import ReadData from '../admin/ReadData'
 import Settings from '../admin/settings'
+import Messages from '../admin/pages/Messages'
+import Reply from '../admin/pages/Reply'
+import ReadMessage from '../admin/components/ViewMessages'
+import Dashboard from '../admin/pages/Dashboard'
+
 const Routers = ()=> {
   return (
     <Routes>
@@ -27,8 +32,12 @@ const Routers = ()=> {
         <Route path="/edit/:id" element={<EditRecipe />} />
         <Route path="/delete/:id" element={<DeleteRecipe />} />
         <Route path="/view/:id" element={<ReadData />} />
+        <Route path="/viewmessage/:msid" element={<ReadMessage />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="about" element={<About />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/messages" element={<Messages />} />
+        <Route path="/reply/:msid" element={<Reply />} />
+        <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   )
 } 

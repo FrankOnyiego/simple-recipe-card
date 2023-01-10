@@ -30,6 +30,9 @@ function Recipes() {
           to={`/recipes/${item.rid}`}
           key={item.rid}
           className="mt-4"
+                        style={{
+                textDecoration: 'none'
+              }}
         >
 
   <img src="https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg" alt="preview" style={{ width: "100%", height: "240px",maxWidth: '450px', margin: "auto auto" }} className="card-img-top" />

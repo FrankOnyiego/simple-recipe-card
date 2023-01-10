@@ -30,9 +30,11 @@ function Header() {
     console.log(signed);
   return (
     <>
-<Navbar bg="dark" expand="lg">
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="pl-2 pr-2">
   <Navbar.Brand className="text-white" href="/">RECIPES</Navbar.Brand>
-  <Navbar.Toggle className="bg-light" aria-controls="basic-navbar-nav" />
+
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ml-auto">
       <Nav.Link className="text-white" href="/">Home</Nav.Link>

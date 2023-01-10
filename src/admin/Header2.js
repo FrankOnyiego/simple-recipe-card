@@ -13,11 +13,15 @@ import { Link } from 'react-router-dom';
         marginRight: "0px",
       }}>
         <Nav className="ml-auto">
+        <Nav.Link><Link to="/dashboard" style={{
+              color: 'white',
+              textDecoration: 'none'
+            }}>Dashboard</Link></Nav.Link>
             <Nav.Link><Link to="/admin" style={{
               color: 'white',
               textDecoration: 'none'
-            }}>Home</Link></Nav.Link>
-                       <Nav.Link> <Link to="/admin"
+            }}>Recipes</Link></Nav.Link>
+                       <Nav.Link> <Link to="/messages"
            style={{
             color:'white',
             textDecoration: 'none'

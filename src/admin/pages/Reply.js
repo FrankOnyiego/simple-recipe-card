@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import Headertwo from '../Header2'
 import Footer from '../../components/Footer'
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
+import { Form } from 'react-bootstrap';
 import { Container, Row, Col, FormGroup, Label, Input, Button } from 'reactstrap';
 import * as Yup from 'yup';
 import { useParams } from 'react-router-dom';
@@ -37,37 +38,55 @@ function Reply() {
         </p>
               <Row>
                 <Col md={{ size: 8, offset: 2 }}>
-                  <Formik
-                    initialValues={{ message: '' }}
+                <Formik
+      onSubmit={(values, actions) => {
+        // handle form submission
+        values.to = item.email;
+        values.email = item.email;
+        values.msg = item.message;
 
-                    onSubmit={(values, { setSubmitting, resetForm }) => {
-                      // Send the message here
-                       values.to = item.email;
-                        axios.post('http://localhost:5000/email',values);
+        axios.post(`http://localhost:5000/email`,values).then(response=>{
+          if(response){
+            console.log("reply sent.");
+          }else{
+            console.log("Failed to send reply.");
+          }
+        });
+      }}
+      initialValues={{ message: ''}}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        isSubmitting,
+      }) => (
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Type reply</Form.Label>
+            <Form.Control
+              as="textarea"
+              name="message"
+              rows={7}
+              value={values.message}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              isInvalid={touched.email && errors.email}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.email}
+            </Form.Control.Feedback>
+          </Form.Group>
 
-                      console.log(values.message);
-                      setSubmitting(false);
-                      resetForm();
-                    }}
-                  >
-                    {({ errors, touched, isSubmitting }) => (
-        
-                      <Form>
-                        <FormGroup>
-                          <Label for="message"> <span className="font-weight-bold">To: {item.email}</span> </Label>
-                          <Input type="textarea" 
-                          name="message" 
-                          id="message" 
-                          placeholder="Enter your reply"  
-                        rows={5}/>
-
-                        </FormGroup>
-                        <Button color="primary" type="submit" disabled={isSubmitting}>
-                          Send Reply
-                        </Button>
-                      </Form>
-                    )}
-                  </Formik>
+          <Button variant="primary" className="mt-2" type="submit" disabled={isSubmitting}>
+            Send Reply
+          </Button>
+        </Form>
+      )}
+    </Formik>
                 </Col>
               </Row>
             </Container>

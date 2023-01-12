@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { Form } from 'formik';
 import React, {useState,useEffect} from 'react'
 import Headertwo from './Header2';
-import Footer from './Footer';
+import Footer from './../components/Footer';
 
 let recipess = [];
 let title="";

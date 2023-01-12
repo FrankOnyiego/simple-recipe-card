@@ -23,21 +23,38 @@ function Dashboard() {
     <>
     <Headertwo />
     <div className="container-fluid d-flex flex-wrap justify-content-between bg-light mt-4 p-3">
-       <NavLink to="/admin"  className="text-left col-md-4 col-sm-12 bg-info m-1">
-       <Card>
+       <NavLink to="/admin"  className="text-left col-md-4 col-sm-12 m-1" style={{
+        textDecoration: 'none'
+       }}>
+       <Card style={{
+        backgroundColor: '#cce6ff'
+       }}>
           <Card.Body>
-            <Card.Title>Recipes</Card.Title>
+            <Card.Title>Recipes <i class="fas fa-utensil-fork"></i></Card.Title>
             <Card.Text>
               {usersCount}
             </Card.Text>
-          </Card.Body>
+          </Card.Body> 
         </Card>
         </NavLink>
 
-        <NavLink to="/messages" className="text-left col-md-4 col-sm-12 bg-info m-1">
-        <Card>
-          <Card.Body>
-            <Card.Title>Messages</Card.Title>
+        <NavLink to="/messages" className="text-left col-md-4 col-sm-12 m-1" style={{
+        textDecoration: 'none',
+       }}>
+        <Card style={{
+        backgroundColor: '#cce6ff'
+       }}>
+          <Card.Body> 
+            <Card.Title>
+              <div  style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}>
+                <div>Messages</div>
+                <div> <i class="fa-solid fa-message"></i></div>
+              </div>              
+              </Card.Title>
             <Card.Text>
               {ordersCount}
             </Card.Text>
@@ -45,14 +62,53 @@ function Dashboard() {
         </Card>
         </NavLink>
 
-        <Card className="text-left col-md-4 col-sm-12 bg-info m-1">
+        <NavLink to="/admin" className="text-left col-md-4 col-sm-12 m-1" style={{
+        textDecoration: 'none'
+       }}>
+        <Card style={{
+        backgroundColor: '#cce6ff'
+       }}>
           <Card.Body>
-            <Card.Title>Bookmarks</Card.Title>
+            <Card.Title>
+              <div  style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}>
+                  <div> Bookmarks</div>
+                  <div> <i class="fa-solid fa-bookmark"></i></div>
+              </div>             
+              </Card.Title>
             <Card.Text>
-              {productsCount} 
+              {ordersCount}
             </Card.Text>
           </Card.Body>
         </Card>
+        </NavLink>
+
+        <NavLink to="/settings" className="text-left col-md-4 col-sm-12 m-1" style={{
+        textDecoration: 'none'
+       }}>
+        <Card style={{
+        backgroundColor: '#cce6ff'
+       }}>
+          <Card.Body>
+            <Card.Title>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}>
+                    <div>Settings </div>
+                    <div><i class="fas fa-cogs"></i></div>
+              </div>
+              </Card.Title>
+            <Card.Text>
+              {ordersCount}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+        </NavLink>
     </div>
 
     <Footer />

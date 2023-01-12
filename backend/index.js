@@ -90,14 +90,14 @@ app.post('/email', (req, res) => {
             subject: req.body.to ?'REPLY TICKET': 'Password Reset', // Subject line
             text: `${req.body.message}`, // plain text body
             html: req.body.to ?
-            `${req.body.message}`
+            `<h7>Your reply to:</h7> <br /> ${req.body.msg } <br /><br /> <div style="background-color:orange; padding:5px;">${req.body.message}</div> <br /><br />If you did not make this request then please ignore this email.` // html body
             :
             `Trouble signing in? <br />Resetting your password is easy. <br /><br /><a href="http://localhost:3000/reset/${email}">Reset password</a> <br /><br />If you did not make this request then please ignore this email.` // html body
-          };
+          }; 
 
             // send the email
           transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
+            if (error) { 
               return console.log(error);
             }
             console.log('Message sent: %s', info.messageId);
@@ -227,3 +227,35 @@ app.get('/messages/:msid',(req,res)=>{
   });
 })
 //END MESSAGE MANAGEMENT
+
+//USER SETTINGS
+app.get('/settings',(req,res)=>{
+  con.query("SELECT * FROM settings", function (err, result, fields) {
+      if (err) throw err;
+      req.session.result = result;
+      console.log(req.session); 
+      res.send(result);
+  });
+})
+
+app.post('/updatesettings',(req,res)=>{
+  const email = req.body.email;
+  const facebook = req.body.facebook;
+  const instagram = req.body.instagram;
+  const twitter = req.body.twitter;
+  const location = req.body.location;
+  const mobile = req.body.mobile;
+  const name = req.body.name;
+  const vision = req.body.vision;
+
+  const sql = "UPDATE `settings` SET `email` = ? , `facebook`= ? , `instagram`= ? , `twitter`= ? , `location`= ? , `telephone`= ? , `cname`= ? , `vision`= ?  WHERE `settings`.`sid` = ?";
+  con.query(sql,[email,facebook,instagram,twitter,location,mobile,name,vision,1],function(error,result,field){
+    if(error) throw error;
+    console.log(result,"edited");
+    res.send(result);   
+  }); 
+})
+
+app.all('*',(req,res)=>{
+  res.send("page not found");
+})

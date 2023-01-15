@@ -68,9 +68,9 @@ function Footer() {
         <p><i className="fas fa-home me-3 text-secondary"></i> {item.location}</p>
         <p>
           <i className="fas fa-envelope me-3 text-secondary"></i>
-          info@example.com
+          {item.email}
         </p>
-        <p><i className="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+        <p><i className="fas fa-phone me-3 text-secondary"></i> {item.telephone}</p>
       </div>
     </div>
   </div>

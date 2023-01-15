@@ -1,39 +1,52 @@
-import React from 'react'
-import { Form, FormGroup } from "reactstrap";
-import "../styles/findmealform.css"
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FormGroup } from "reactstrap";
+import "../styles/findmealform.css";
+import { useNavigate, useParams } from 'react-router-dom';
 
 function FindMeal() {
+  const Navigate = useNavigate();
   return (
     <>
-    <Form className="form" >
-      <div className=" d-flex align-items-center justify-content-between flex-wrap">
-        <FormGroup className="form__group">
-          <input type="number" name="min"  min="0" val="1" placeholder="Min price" />
-        </FormGroup>
-
-        <FormGroup className="form__group">
-          <input type="number" name="max"  min="0" placeholder="Max price" />
-        </FormGroup>
-
-        <FormGroup className="form__group"> 
-          <input type="text" name="brand"  placeholder="Brand e.g Tesla" />
-        </FormGroup>
-
-        <FormGroup className="select__group">
-          <select name="ac">
-            <option value="automatic">Automatic car</option>
-            <option value="manual">Manual car</option>
-          </select>
-        </FormGroup>
-
-        <FormGroup className="form__group">
+   <Formik
+  initialValues={{ min: '', max: '', meal: '' }}
+  onSubmit={(values, { setSubmitting }) => {
+    // handle form submission here
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 400);
  
-            <button className="btn find__car-btn">Find Meal</button>
+    Navigate(`/recipes/${values.min ? values.min : null}/${values.max ? values.max: null}/${values.meal ? values.meal: null}`);
+  }}
+>
+  {({ isSubmitting }) => (
+    <Form className="form">
+      <div className="d-flex align-items-center justify-content-between flex-wrap">
+        <FormGroup className="form__group">
+          <Field type="number" name="min" min="0" placeholder="Min budget" />
+          <ErrorMessage name="min" component="div" />
+        </FormGroup>
 
+        <FormGroup className="form__group">
+          <Field type="number" name="max" min="0" placeholder="Max budget" />
+          <ErrorMessage name="max" component="div" />
+        </FormGroup>
+
+        <FormGroup className="form__group">
+          <Field type="text" name="meal" placeholder="Meal e.g Corns" />
+          <ErrorMessage name="meal" component="div" />
+        </FormGroup>
+
+        <FormGroup className="form__group">
+          <button type="submit" className="btn find__car-btn" disabled={isSubmitting}>
+            Find Meal
+          </button>
         </FormGroup>
       </div>
     </Form>
-    </>
+  )}
+</Formik>
+   </>
   )
 }
 

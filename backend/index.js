@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import nodemailer from 'nodemailer'
 import session from 'express-session';
-
+import multer from 'multer';
 
 const app = express();
 const MemoryStore = session.MemoryStore;
@@ -18,6 +18,16 @@ app.use(session({
 }));
 
 app.use(express.json());
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage });
 
 app.use(cors({  
   origin: ["http://localhost:3000"],
@@ -124,14 +134,15 @@ app.post('/login',(req,res)=>{
       const email = req.body.email;
       res.cookie('email', `${email}`, {maxAge: 8.64e+7, httpOnly: true});
       res.cookie('user', `${result[0].name}`, {maxAge: 8.64e+7, httpOnly: true});
+      res.send(result);  
     }else{
       //no results found
-    }
-    res.send(result);   
+      res.send("0");
+    } 
   });
   console.log(req.cookies);
 })
-
+ 
 app.post('/passwordchange',(req,res)=>{
   const password_hash = crypto.createHash('md5').update(req.body.password).digest('hex');
   const email = req.body.email;
@@ -154,14 +165,21 @@ app.get('/username',(req,res)=>{
   };
 })
 
-app.post('/addrecipe',(req,res)=>{
+app.post('/addrecipe',upload.single("file"),(req,res)=>{
   const name = req.body.recipe;
   const ingredient = req.body.ingredients;
   const description = req.body.description;
   const sql = "INSERT INTO recipecard VALUES(NULL,?,?,?)";
   con.query(sql,[name,ingredient,description],function(error,result,field){
     if(error) throw error;
-    res.send(result); 
+      try {
+        res.status(200).send("File uploaded successfully");
+      } catch (err) {
+        console.log(err);
+        res.status(500).send("Error uploading file");
+      }
+      console.log(req.file,"files");
+    //res.send(result); 
   });
 })
 
@@ -256,6 +274,20 @@ app.post('/updatesettings',(req,res)=>{
   }); 
 })
 
+app.get('/filter/:min/:max/:meal',(req,res)=>{
+  const min = req.params.min;
+  const max = req.params.max;
+  const meal = req.params.meal;
+
+  const sql = `SELECT * FROM recipecard WHERE Title LIKE '%${meal}%' `;
+
+  con.query(sql,[meal],function(error,result,field){
+    if(error) throw error;
+    console.log(result,sql);
+    res.send(result);   
+  }); 
+})
+ 
 app.all('*',(req,res)=>{
   res.send("page not found");
 })

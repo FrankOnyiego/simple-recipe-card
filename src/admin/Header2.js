@@ -33,7 +33,7 @@ import { Link } from 'react-router-dom';
             textDecoration: 'none'
            }}
            >Settings</Link> </Nav.Link>
-           <Nav.Link> <Link to="/admin"
+           <Nav.Link> <Link to="/adminabout"
            style={{
             color:'white',
             textDecoration: 'none'

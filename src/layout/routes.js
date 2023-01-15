@@ -16,16 +16,18 @@ import Messages from '../admin/pages/Messages'
 import Reply from '../admin/pages/Reply'
 import ReadMessage from '../admin/components/ViewMessages'
 import Dashboard from '../admin/pages/Dashboard'
-
+import AdminAbout from '../admin/About'
 const Routers = ()=> {
   return (
     <Routes>
         <Route path="/" element={<Navigate to="/recipes" />} />
         <Route path="/recipes" element={<Home />} />
+        <Route path="/recipes/:min/:max/:meal" element={<Home />} />
         <Route path="/recipes/:id" element={<RecipeDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/login/:error" element={<Login />} />
         <Route path="/forgot" element={<ForgotPasswordForm />} />
         <Route path="/reset/:email" element={<ResetPassword />} />
         <Route path="/admin" element={<Admin />} />
@@ -38,6 +40,7 @@ const Routers = ()=> {
         <Route path="/messages" element={<Messages />} />
         <Route path="/reply/:msid" element={<Reply />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/adminabout" element={<AdminAbout />} />
     </Routes>
   )
 } 

@@ -22,7 +22,9 @@ function Dashboard() {
   return (
     <>
     <Headertwo />
-    <div className="container-fluid d-flex flex-wrap justify-content-between bg-light mt-4 p-3">
+    <div className="container-fluid d-flex flex-wrap justify-content-between bg-light mt-4 p-3" style={{
+      color: 'black'
+    }}>
        <NavLink to="/admin"  className="text-left col-md-4 col-sm-12 m-1" style={{
         textDecoration: 'none'
        }}>
@@ -30,7 +32,16 @@ function Dashboard() {
         backgroundColor: '#cce6ff'
        }}>
           <Card.Body>
-            <Card.Title>Recipes <i class="fas fa-utensil-fork"></i></Card.Title>
+            <Card.Title>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between'
+              }}>
+                  <div>Recipes</div>
+                  <div><i class="fa fa-spoon" aria-hidden="true"></i></div>
+              </div>               
+              </Card.Title>
             <Card.Text>
               {usersCount}
             </Card.Text>

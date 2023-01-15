@@ -1,8 +1,9 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
 import {Link, NavLink} from 'react-router-dom'
-function Recipes() {
+function Recipes(props) {
   const[recipes, setRecipes]=useState([]);
+
     async function getData() {
         try {
           const response = await axios.get('http://localhost:5000/recipes');
@@ -14,17 +15,22 @@ function Recipes() {
       }
       
       useEffect(()=>{
-        getData();
+        if(props.meal.length > 0){
+          setRecipes(props.meal);
+        }else{
+          getData();
+        }
       },[])
 
       
   return (
     <div className="container">
     <div className="row">
-      {recipes.map((item)=>(
+      {(props.meal.length > 0 ? props.meal : recipes).map((item)=>(
               <div className="card mb-3 col-md-3 mt-4"
               style={{
-                textDecoration: 'none'
+                textDecoration: 'none',
+                margin: '2px'
               }}>
         <NavLink
           to={`/recipes/${item.rid}`}

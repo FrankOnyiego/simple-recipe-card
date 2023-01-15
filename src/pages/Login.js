@@ -5,36 +5,43 @@ import axios from 'axios'
 import { useNavigate,NavLink } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
+import { useParams } from 'react-router-dom';
 export default function Login() {
   axios.defaults.withCredentials = true;
   const Navigate = useNavigate();
-
+  const { error } = useParams();
   return (
     <>
     <Header />
     <Container>
       <Row>
-        <Col xs={12} md={6} style={{margin: 'auto auto'}}>
+        <Col xs={12} md={12} sm={12} style={{margin: 'auto auto'}}>
             <Card className="p-2 m-4">
                 <Card.Title>Login</Card.Title>
                 <Card.Body>
     <Formik
       validationSchema={rules}
-      onSubmit={(values, actions) => {
+      initialValues={{ email: '', password: '' }}
+      onSubmit={(values, { setSubmitting }) => {
         // handle form submission
         const mail = values.email;
 
         axios.post("http://localhost:5000/login",values).then(response=>{
           if(response){
             console.log("details found");
-            Navigate("/recipes");
+            if(response.data === 0){
+              //unsuccessful login
+              Navigate("/login/error");
+            }else{
+              Navigate("/recipes");
+            }
           }else{
             console.log("no records found");
           }
         });
+
+        setSubmitting(false);
       }}
-      initialValues={{ email: '', password: '' }}
     >
       {({
         values,
@@ -46,6 +53,10 @@ export default function Login() {
         isSubmitting,
       }) => (
         <Form onSubmit={handleSubmit}>
+          <div>
+            {error && <div className="alert alert-danger">Invalid email address or password</div>}
+          </div>
+
           <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control

@@ -71,9 +71,9 @@ function Settings() {
                    <li className="nav-item"><NavLink to="/settings" className="active nav-link">Settings</NavLink></li>
                  </ul>
                  <div className="tab-content pt-3">
-                   <div className="tab-pane active">
+                   <div className="tab-pane active"> 
                    <Formik
-    initialValues={{ name: '', vision: '' ,email: '', mobile: '', location: '', twitter: '',facebook: '',instagram: '' }}
+    initialValues={{ name: `${item.cname}`, vision: `${item.vision}` ,email: `${item.email}`, mobile: `${item.telephone}`, location: `${item.location}`, twitter: `${item.twitter}`,facebook: `${item.facebook}`,instagram: `${item.instagram}` }}
     validationSchema={SignupSchema}
     onSubmit={(values, { setSubmitting }) => {
       axios.post('http://localhost:5000/updatesettings',values).then((response)=>{

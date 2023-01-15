@@ -12,7 +12,8 @@ export default function AddModal(props) {
         initialValues: {
             recipe: "",
             ingredients: "",
-            description: ""
+            description: "",
+            file:""
         },
         onSubmit: function(values){
             axios.post('http://localhost:5000/addrecipe',values);
@@ -24,7 +25,9 @@ export default function AddModal(props) {
             })
         }
     })
-
+    const handleFileChange = (e) => {
+      Formik.setFieldValue('file', e.currentTarget.files[0]);
+    };
   return (
     <Modal
       {...props}
@@ -43,12 +46,17 @@ export default function AddModal(props) {
                     <Form.Label>Recipe Name</Form.Label>
                     <Form.Control type="text" name="recipe" onChange={Formik.handleChange} value={Formik.values.title} placeholder="recipe name..." />
                 </Form.Group>
+                <Form.Group controlId="formFile" className="mb-3">
+        <Form.Label>Default file input example</Form.Label>
+        <Form.Control
+          type="file"
+          name="file"
+          onChange={handleFileChange}
+        />
+      </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Ingredients</Form.Label> 
                     <Form.Control as="textarea" rows={3} name="ingredients" onChange={Formik.handleChange} value={Formik.values.ingredients} placeholder="type ingredients..." />
-                    <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">

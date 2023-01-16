@@ -7,7 +7,11 @@ import React, {useState,useEffect} from 'react'
 import Form from 'react-bootstrap/Form';
 
 export default function AddModal(props) {
+    const [file, setFile] = useState(null);
 
+    const handleChange = (event) => {
+        setFile(event.target.files[0])
+    }
     const Formik = useFormik({
         initialValues: {
             recipe: "",
@@ -16,18 +20,22 @@ export default function AddModal(props) {
             file:""
         },
         onSubmit: function(values){
-            axios.post('http://localhost:5000/addrecipe',values);
+           const formData = new FormData();
+            formData.append('file', file);
+            formData.append('recipe', values.recipe);
+            formData.append('ingredients', values.ingredients);
+            formData.append('description', values.description);
+            axios.post('http://localhost:5000/addrecipe',formData);
             console.log(values);
             Formik.resetForm({
                 recipe: "",
                 ingredients: "",
                 description: ""
             })
+
+            console.log(file,"jh");
         }
     })
-    const handleFileChange = (e) => {
-      Formik.setFieldValue('file', e.currentTarget.files[0]);
-    };
   return (
     <Modal
       {...props}
@@ -37,7 +45,7 @@ export default function AddModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          ADD RECIPE
+          Add Recipe
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -46,14 +54,16 @@ export default function AddModal(props) {
                     <Form.Label>Recipe Name</Form.Label>
                     <Form.Control type="text" name="recipe" onChange={Formik.handleChange} value={Formik.values.title} placeholder="recipe name..." />
                 </Form.Group>
+
                 <Form.Group controlId="formFile" className="mb-3">
-        <Form.Label>Default file input example</Form.Label>
-        <Form.Control
-          type="file"
-          name="file"
-          onChange={handleFileChange}
-        />
-      </Form.Group>
+                    <Form.Label>Upload recipe image</Form.Label>
+                    <Form.Control
+                      type="file"
+                      name="file"
+                      onChange={handleChange}
+                    />
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Ingredients</Form.Label> 
                     <Form.Control as="textarea" rows={3} name="ingredients" onChange={Formik.handleChange} value={Formik.values.ingredients} placeholder="type ingredients..." />
@@ -64,8 +74,8 @@ export default function AddModal(props) {
                     <Form.Control as="textarea" rows={3} name="description" onChange={Formik.handleChange} value={Formik.values.description} placeholder="type preparation steps..." />
                 </Form.Group>
 
-                <Button variant="primary" className="mr-auto" type="submit" onClick={props.onHide}>
-                    Submit
+                <Button variant="success" className="mr-auto" type="submit" onClick={props.onHide}>
+                    ADD RECIPE
                 </Button>
                 </Form>
       </Modal.Body>

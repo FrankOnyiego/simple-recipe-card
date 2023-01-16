@@ -41,11 +41,11 @@ function Recipes(props) {
               }}
         >
 
-  <img src="https://mccormick.widen.net/content/qvxeigxwtq/original/christmas_turkey_637390546118030666_800x800.jpg" alt="preview" style={{ width: "100%", height: "240px",maxWidth: '450px', margin: "auto auto" }} className="card-img-top" />
+  <img src={`file:///C:/Users/ENGINEER/recipe/recipes/uploads/${item.image}`} alt="preview" style={{ width: "100%", height: "240px",maxWidth: '450px', margin: "auto auto" }} className="card-img-top" />
   <div className="card-body">
     <h5 className="card-title">{item.Title}</h5>
   </div>
- 
+  
         </NavLink>
           <div className="card-footer d-flex justify-content-between align-items-center">
           <button className="btn" style={{backgroundColor: '#e36ff7'}}>Bookmark &nbsp;<i class="fas fa-bookmark"></i></button>

@@ -54,7 +54,7 @@ function MessageTable() {
 
       <thead className="thead-dark">
         <tr>
-          <th>NAME</th>
+          <th>FROM</th>
           <th>EMAIL</th>
           <th>MESSAGES</th>
           <th>ACTION</th>

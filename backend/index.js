@@ -21,13 +21,13 @@ app.use(express.json());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, '../uploads/');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
-  },
+  }
 });
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 app.use(cors({  
   origin: ["http://localhost:3000"],
@@ -169,8 +169,9 @@ app.post('/addrecipe',upload.single("file"),(req,res)=>{
   const name = req.body.recipe;
   const ingredient = req.body.ingredients;
   const description = req.body.description;
-  const sql = "INSERT INTO recipecard VALUES(NULL,?,?,?)";
-  con.query(sql,[name,ingredient,description],function(error,result,field){
+  const filename = req.file.path;
+  const sql = "INSERT INTO recipecard VALUES(NULL,?,?,?,?)";
+  con.query(sql,[name,ingredient,description,filename],function(error,result,field){
     if(error) throw error;
       try {
         res.status(200).send("File uploaded successfully");
@@ -196,7 +197,7 @@ app.get('/delete/:id',(req,res)=>{
 app.post('/editrecipe',(req,res)=>{
   const rid = req.body.rid;
   const ingredients = req.body.ingredients;
-  const description = req.body.description;
+  const description = req.body.preparation;
   const sql = "UPDATE `recipecard` SET `ingredients` = ? , `description`= ?  WHERE `recipecard`.`rid` = ?";
   con.query(sql,[ingredients,description,rid],function(error,result,field){
     if(error) throw error;

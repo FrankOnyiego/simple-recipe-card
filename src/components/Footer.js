@@ -5,7 +5,7 @@ function Footer() {
   const[settings,set]=useState([]);
   async function getData() {
     try {
-      const response = await axios.get('http://localhost:5000/settings');
+      const response = await axios.get(`http://localhost:5000/settings`);
       set(response.data);
     } catch (error) {
       console.log(error);
@@ -14,7 +14,7 @@ function Footer() {
   
   useEffect(()=>{
     getData();
-  },[])
+  },[]) 
 
 
   return (

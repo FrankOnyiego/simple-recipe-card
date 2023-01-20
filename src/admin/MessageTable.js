@@ -49,7 +49,8 @@ function MessageTable() {
 
         <Table responsive className="table table-striped table-hover table-lg mt-2" style={{
         width: '90%',
-        marginLeft: '5%'
+        marginLeft: '5%',
+        marginTop: '560px'
     }}> 
 
       <thead className="thead-dark">

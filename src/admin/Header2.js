@@ -2,7 +2,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
  export default function Headertwo() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="pl-2 pr-2">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="fixed-top pl-2 pr-2">
       <Navbar.Brand><Link to="/admin" style={{
               color: 'white',
               textDecoration: 'none'
